@@ -2,10 +2,11 @@
     <div class="tjdoh-hours">
         <ul>
             <?php
-                $week = get_days();
+                $week = tjdoh_get_days();
+                $hours = tjdoh_get_typical_hours($week);
                 for($i = 0; $i < count($week); $i++){ ?>
                     
-                    <li><?php echo $week[$i] ?></li>
+                    <li><?php echo $week[$i] . ' ' . $hours[$i]; ?></li>
 
                 <?php }
             ?>
@@ -17,7 +18,7 @@
 
 //Functions
 
-function get_days(){
+function tjdoh_get_days(){
     $start_day = get_option('start_of_week');
     $week = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
     for($i = $start_day; $i > 0; $i--){
@@ -26,4 +27,15 @@ function get_days(){
         array_push($week, $shift_day);
     }
     return $week;
+}
+
+function tjdoh_get_typical_hours($days){
+    $hours = array();
+    $typ_start = get_option('typical-open-hour') . ':' . get_option('typical-open-minute') . ' ' . strtoupper(get_option('typical-open-ampm'));
+    $typ_close = get_option('typical-close-hour') . ':' . get_option('typical-close-minute') . ' ' . strtoupper(get_option('typical-close-ampm'));
+    $typ_hours = $typ_start . ' - ' . $typ_close;
+    for($i = 0; $i < count($days); $i++){
+        array_push($hours, $typ_hours);
+    }
+    return $hours;
 }

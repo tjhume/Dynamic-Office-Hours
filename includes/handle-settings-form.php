@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Handle settings form submission
+ * Handle general settings form submission
  */
 if(!function_exists('tjdoh_handle_form')){
     function tjdoh_handle_form(){
@@ -33,22 +33,8 @@ if(!function_exists('tjdoh_handle_form')){
     }
 }
 
-/**
- * Functions
- */
+if(!function_exists('tjdoh_handle_daily_form')){
+    function tjdoh_handle_daily_form(){
 
-function tjdoh_form_err($str){
-    echo '
-    <div class="error">
-        <p>'.$str.'</p>
-    </div>
-    ';
-}
-
-function tjdoh_form_success($str){
-    echo '
-    <div class="updated">
-        <p>'.$str.'</p>
-    </div>
-    ';
+    }
 }
