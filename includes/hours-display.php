@@ -7,7 +7,7 @@
                 $day = date('l', current_time('timestamp'));
                 for($i = 0; $i < count($week); $i++){ ?>
                     
-                    <li <?php if($day === $week[$i]){echo 'class = "current-day"';} ?>><?php echo $week[$i] . ' ' . $hours[$i]; ?></li>
+                    <li <?php if($day === $week[$i]){echo 'class = "tjdoh-current-day"';} ?>><?php echo $week[$i] . ' ' . $hours[$i]; ?></li>
 
                 <?php }
             ?>
