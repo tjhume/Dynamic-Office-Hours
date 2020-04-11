@@ -10,7 +10,7 @@
             </div>
             <tbody>
                 <tr>
-                    <th><label>Typical Starting Time</label></th>
+                    <th><label>Typical Opening Time</label></th>
                     <td>
                         <select name="typical-open-hour" id="typical-open-hour">
                             <?php echo tjdoh_get_hours('typical-open-hour'); ?>
