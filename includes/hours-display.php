@@ -3,10 +3,11 @@
         <ul>
             <?php
                 $week = tjdoh_get_days();
-                $hours = tjdoh_get_typical_hours($week);
+                $hours = tjdoh_get_office_hours($week);
+                $day = date('l', current_time('timestamp'));
                 for($i = 0; $i < count($week); $i++){ ?>
                     
-                    <li><?php echo $week[$i] . ' ' . $hours[$i]; ?></li>
+                    <li <?php if($day === $week[$i]){echo 'class = "current-day"';} ?>><?php echo $week[$i] . ' ' . $hours[$i]; ?></li>
 
                 <?php }
             ?>
@@ -29,13 +30,26 @@ function tjdoh_get_days(){
     return $week;
 }
 
-function tjdoh_get_typical_hours($days){
+function tjdoh_get_office_hours($days){
     $hours = array();
     $typ_start = get_option('typical-open-hour') . ':' . get_option('typical-open-minute') . ' ' . strtoupper(get_option('typical-open-ampm'));
     $typ_close = get_option('typical-close-hour') . ':' . get_option('typical-close-minute') . ' ' . strtoupper(get_option('typical-close-ampm'));
     $typ_hours = $typ_start . ' - ' . $typ_close;
     for($i = 0; $i < count($days); $i++){
-        array_push($hours, $typ_hours);
+        $day = strtolower($days[$i]);
+        $option = get_option($day.'-options');
+        if($option === 'closed'){
+            array_push($hours, 'Closed');
+        }
+        else if($option === 'different-times'){
+            $diff_start = get_option($day.'-open-hour') . ':' . get_option($day.'-open-minute') . ' ' . strtoupper(get_option($day.'-open-ampm'));
+            $diff_close = get_option($day.'-close-hour') . ':' . get_option($day.'-close-minute') . ' ' . strtoupper(get_option($day.'-close-ampm'));
+            $diff_hours = $diff_start . ' - ' . $diff_close;
+            array_push($hours, $diff_hours);
+        }
+        else{
+            array_push($hours, $typ_hours);
+        }
     }
     return $hours;
 }

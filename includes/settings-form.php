@@ -40,6 +40,16 @@
                     </td>
                 </tr>
             </tbody>
+            <tbody>
+                <tr>
+                    <th><label>How to Use</label></th>
+                    <td>
+                        <p>This plugin uses your <a href="<?php echo admin_url('options-general.php#timezone_string'); ?>">WordPress Date/Time settings</a> to determine the starting day of the week, timezone, etc.</p>
+                        <p>To display your office hours, simply add the following shortcode and style it as you wish: <code>[tjdoh-hours]</code></p>
+                        <p>The current day of the week will be given a CSS class of <code>current-day</code></p>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <p class="submit">
             <input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes">
