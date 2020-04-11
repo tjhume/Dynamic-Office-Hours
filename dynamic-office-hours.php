@@ -114,49 +114,6 @@ add_shortcode('tjdoh-hours', 'tjdoh_hours_shortcode');
 
 //Functions
 
-function tjdoh_the_days(){
-    $start_day = get_option('start_of_week');
-    $week = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-    for($i = $start_day; $i > 0; $i--){
-        $shift_day = $week[0];
-        array_shift($week);
-        array_push($week, $shift_day);
-    }
-    
-    for($i = 0; $i < count($week); $i++){
-        echo '
-            <tbody>
-                <tr>
-                    <th><label>'.$week[$i].' Start Time</label></th>
-                    <td>
-                        <select name="'.$week[$i].'-start-hour" id="'.$week[$i].'-start-hour">
-                            '.tjdoh_get_hours($week[$i].'-start-hour').'
-                        </select>
-                        :
-                        <select name="'.$week[$i].'-start-minute" id="'.$week[$i].'-start-minute">
-                            '.tjdoh_get_minutes($week[$i].'-start-minute').'
-                        </select>
-                        <select name="'.$week[$i].'-start-ampm" id="'.$week[$i].'-start-ampm">'.tjdoh_get_ampm($week[$i].'-start-ampm').'</select>
-                    </td>
-                </tr>
-                <tr>
-                    <th><label>'.$week[$i].' End Time</label></th>
-                    <td>
-                        <select name="'.$week[$i].'-end-hour" id="'.$week[$i].'-end-hour">
-                            '.tjdoh_get_hours($week[$i].'-end-hour').'
-                        </select>
-                        :
-                        <select name="'.$week[$i].'-end-minute" id="'.$week[$i].'-end-minute">
-                            '.tjdoh_get_minutes($week[$i].'-end-minute').'
-                        </select>
-                        <select name="'.$week[$i].'-end-ampm" id="'.$week[$i].'-end-ampm">'.tjdoh_get_ampm($week[$i].'-end-ampm').'</select>
-                    </td>
-                </tr>
-            </tbody>
-        ';
-    }
-}
-
 function tjdoh_get_minutes($field){
     $selectedVal = get_option($field);
     if($selectedVal === false){
@@ -211,20 +168,4 @@ function tjdoh_get_ampm($field){
             <option selected value="pm">PM</option>
         ';
     }
-}
-
-function tjdoh_form_err($str){
-    echo '
-    <div class="error">
-        <p>'.$str.'</p>
-    </div>
-    ';
-}
-
-function tjdoh_form_success($str){
-    echo '
-    <div class="updated">
-        <p>'.$str.'</p>
-    </div>
-    ';
 }
