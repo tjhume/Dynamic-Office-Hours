@@ -1,6 +1,6 @@
 <div class="wrap">
     <h2>Dynamic Office Hours</h2>
-    <form method="POST">
+    <form class="tjdoh-form" method="POST">
         <input type="hidden" name="updated" value="true" />
         <?php wp_nonce_field( 'tjdoh_update', 'tjdoh_form' ); ?>
         <table class="form-table">
