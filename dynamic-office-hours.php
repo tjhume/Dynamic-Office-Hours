@@ -68,7 +68,7 @@ function tjdoh_submenu_filter( $submenu_file ) {
  * General settings
  */
 function tjdoh_plugin_settings_page_content() {
-    if( $_POST['updated'] === 'true' ){
+    if( !empty($_POST['updated']) && $_POST['updated'] === 'true' ){
         if(
             ! isset( $_POST['tjdoh_form'] ) ||
             ! wp_verify_nonce( $_POST['tjdoh_form'], 'tjdoh_update' )
@@ -89,7 +89,7 @@ function tjdoh_plugin_settings_page_content() {
  * Daily settings
  */
 function tjdoh_daily_settings_page_content() {
-    if( $_POST['updated'] === 'true' ){
+    if( !empty($_POST['updated']) && $_POST['updated'] === 'true' ){
         if(
             ! isset( $_POST['tjdoh_form'] ) ||
             ! wp_verify_nonce( $_POST['tjdoh_form'], 'tjdoh_update' )
